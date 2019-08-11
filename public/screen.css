@@ -9,4 +9,89 @@ html {
 body {
   margin: 0;
   min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-grow: initial;
+  justify-content: center;
+  text-align: center;
+  font-size: 170%;
+  background-color: black;
+}
+#container {
+  background-color: black;
+  background-image: url('/images/blackjack.jpg');
+  background-repeat: no-repeat;
+  opacity: 0.8;
+  width: 1023px;
+  min-height: 800px;
+  max-width: 1023px;
+}
+.hello-world {
+  display: block;
+  border: 1px solid black;
+  border-radius: 20px;
+  background-color: rgba(224, 224, 224, 70%);
+  color: black;
+  text-shadow: 14px;
+  text-align: center;
+  font-size: 14pt;
+  margin-top: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+#dealer-row,
+#player-row {
+  margin: 30px;
+}
+
+card {
+  display: block;
+  background-color: white;
+  color: black;
+  border-radius: 6px;
+  border: solid 1px black;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  margin-right: 3px;
+  text-align: left;
+  width: 4.5rem;
+  height: 7rem;
+}
+card.red-card {
+  color: red;
+}
+
+div.card-top {
+  float: left;
+}
+div.card-bottom {
+  padding-top: 3.6rem;
+  position: relative;
+  bottom: -55px;
+  vertical-align: bottom;
+  transform: rotate(180deg);
+  float: right;
+}
+
+#button-row {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+button {
+  padding: 10px 15px 10px 15px;
+  background-color: blue;
+  font-size: 140%;
+  color: white;
+  width: 200px;
+  border-radius: 20px;
+}
+
+#dealer-row,
+#player-row {
+  display: flex;
+  flex-direction: row;
 }
