@@ -19,12 +19,17 @@ body {
 }
 #container {
   background-color: black;
-  background-image: url('/images/blackjack.jpg');
+  /* background-image: url('/images/blackjack.jpg'); */
   background-repeat: no-repeat;
   opacity: 0.8;
   width: 1023px;
   min-height: 800px;
   max-width: 1023px;
+}
+#dealer-score,
+#player-score {
+  font-size: 140%;
+  color: white;
 }
 .hello-world {
   display: block;
@@ -63,6 +68,9 @@ card {
 card.red-card {
   color: red;
 }
+.red {
+  color: red;
+}
 
 div.card-top {
   float: left;
@@ -94,4 +102,10 @@ button {
 #player-row {
   display: flex;
   flex-direction: row;
+}
+
+#game-status {
+  color: orange;
+  font-size: 140%;
+  min-height: 45px;
 }
