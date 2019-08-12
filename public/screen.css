@@ -19,7 +19,7 @@ body {
 }
 #container {
   background-color: black;
-  /* background-image: url('/images/blackjack.jpg'); */
+  background-image: url('/images/blackjack.png');
   background-repeat: no-repeat;
   opacity: 0.8;
   width: 1023px;
