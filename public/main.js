@@ -3,8 +3,8 @@
 const suit = ['♠', '♥', '♦', '♣']
 const rank = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
 const deck = []
-const hands = { player: [], dealer: [] }
-const scores = { player: 0, dealer: 0 }
+let hands = { player: [], dealer: [] }
+let scores = { player: 0, dealer: 0 }
 let gameOver = false
 
 const renderCard = label => {
@@ -27,7 +27,6 @@ const createDeck = () => {
   for (let r = 0; r < rank.length; r++)
     for (let s = 0; s < suit.length; s++)
       deck.push({ rank: rank[r], suit: suit[s] })
-  console.log(deck)
 }
 
 const shuffle = () => {
@@ -37,7 +36,6 @@ const shuffle = () => {
     deck[j] = deck[i]
     deck[i] = tmp
   }
-  console.log(deck)
 }
 
 const status = text => {
@@ -55,12 +53,7 @@ const status = text => {
 const deal = (role, count = 1) => {
   status('dealing to ' + role + '...')
   for (let i = 0; i < count; i++) {
-    console.log('-------------')
-    console.log('deck[0]', deck[0])
-    console.log('before', deck.length)
     const card = deck.shift()
-    console.log('deck[0]', deck[0])
-    console.log('after', deck.length)
     const hand = hands[role]
 
     hand.push(card)
@@ -74,7 +67,6 @@ const deal = (role, count = 1) => {
 const computeScore = role => {
   const hand = hands[role]
   let total = 0
-  console.log('hand of ' + role, hand)
   for (let i = 0; i < hand.length; i++) {
     const rank = hand[i].rank
     switch (rank) {
@@ -102,7 +94,6 @@ const hit = role => {
   if (gameOver) {
     return
   }
-  console.log('Hit invoked')
   const card = deck.shift()
   const hand = hands[role]
   const label = card.rank + card.suit
@@ -113,11 +104,9 @@ const hit = role => {
 
   const score = computeScore(role)
   if (score > 21) {
-    console.log('boo you lose!')
     status('Game Over')
     gameOver = true
   } else {
-    console.log('game can continue')
     if (role === 'player') {
       // dealer will play in 1 second
       if (!gameOver) {
@@ -129,7 +118,6 @@ const hit = role => {
     }
   }
 }
-console.log('hit', hit)
 
 const dealersTurn = () => {
   status("Dealer's turn")
@@ -145,7 +133,6 @@ const stand = role => {
   if (gameOver) {
     return
   }
-  console.log('Stand invoked')
   if (role === 'player') {
     // dealer will play in 1 second
     status("Dealer's Turn")
@@ -154,14 +141,18 @@ const stand = role => {
     status("Player's Turn")
   }
 }
-console.log('stand', stand)
+
+const newGame = () => {
+  createDeck()
+  hands = { player: [], dealer: [] }
+  scores = { player: 0, dealer: 0 }
+  shuffle()
+  renderCard()
+}
 
 const main = () => {
-  console.log('main started')
-
   createDeck()
   shuffle()
-  console.log('main started')
   deal('dealer', 2)
 
   setTimeout(() => {
@@ -178,25 +169,7 @@ const main = () => {
   document.querySelector('#stand-button').addEventListener('click', () => {
     stand('player')
   })
-  console.log('registered click handlers')
+  document.querySelector('#new-game-button').addEventListener('click', newGame)
 }
 
 document.addEventListener('DOMContentLoaded', main)
-
-//   const card1 = deck[0].rank + deck[0].suit
-//   const card2 = deck[1].rank + deck[1].suit
-//   document.querySelector('#display1').textContent = card1
-//   document.querySelector('#display2').textContent = card2
-
-// document.querySelector('#click').addEventListener('click', dealer)
-
-// const deck = []
-// for (let i = 0; i <= 10; i++) {
-//   let j = (deck[i] = { rank: i, suit: 'diamond' }
-//  j = deck.push()
-//   console.log(j)
-// for (let s = 0; s < suits.length; s++) {
-//   for (let r = 0; r < ranks.length; r++) {
-//     let card = { rank: ranks[r], suit: suits[s] }
-//     deck.push(card)
-// console.log(deck)
