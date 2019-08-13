@@ -66,24 +66,41 @@ const deal = (role, count = 1) => {
 
 const computeScore = role => {
   const hand = hands[role]
-  let total = 0
-  for (let i = 0; i < hand.length; i++) {
-    const rank = hand[i].rank
-    switch (rank) {
+  const ranks = hand.map(card => {
+    switch (card.rank) {
       case 'K':
       case 'Q':
       case 'J':
       case '10':
-        total += 10
-        break
+        return 10
       case 'A':
-        total += 11
-        break
-      default:
-        total += parseInt(rank)
-        break
+        return 11
     }
-  }
+    return parseInt(card.rank)
+  })
+  console.log('ranks', ranks)
+  const total = ranks.reduce((total, number) => {
+    return total + number
+  })
+  console.log('total', total)
+  // for (let i = 0; i < hand.length; i++) {
+  //   const rank = hand[i].rank
+  //   switch (rank) {
+  //     case 'K':
+  //     case 'Q':
+  //     case 'J':
+  //     case '10':
+  //       total += 10
+  //       break
+  //     case 'A':
+  //       total += 11
+  //       break
+  //     default:
+  //       total += parseInt(rank)
+  //       break
+  //   }
+  // }
+
   document.querySelector('#' + role + '-score').textContent = '' + total
   scores[role] = total
 
